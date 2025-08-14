@@ -4,71 +4,97 @@ let apiCallCount = 0;
 // Character data
 const characters = [
   {
-    "name": "Sora",
-    "personality": "Generous, attentive, and community-minded.",
-    "occupation": "Mediator and problem-solver for neighbors",
-    "interests": ["Bringing people together", "Resolving disputes", "Finding fair compromises"],
-    "likes": "Acts of kindness, teamwork, mutual understanding",
-    "dislikes": "Selfishness, unnecessary arguments, ignoring others in need",
-    "hometown": "Aurora District",
-    "description": "Sora notices when others are in need and often steps in, but values when people choose to help without being asked.",
-    "userObjective": "Decide how willing you are to assist others when a need arises.",
-    "characterObjective": "Assess how cooperative, helpful, and willing to compromise the user is.",
-    "traitMeasured": "Agreeableness"
+    name: "Sora",
+    personality: "Generous, attentive, and community-minded.",
+    occupation: "Mediator and problem-solver for neighbors",
+    interests: ["Bringing people together", "Resolving disputes", "Finding fair compromises"],
+    likes: "Acts of kindness, teamwork, mutual understanding",
+    dislikes: "Selfishness, unnecessary arguments, ignoring others in need",
+    hometown: "Aurora District",
+    description: "Sora notices when others are in need and often steps in, but values when people choose to help without being asked.",
+    userObjective: "Decide how willing you are to assist others when a need arises.",
+    characterObjective: "Assess how cooperative, helpful, and willing to compromise the user is. See if the user is willing to help you out.",
+    traitMeasured: "Agreeableness",
+    hooks: [
+      "A schedule for sharing resources in {setting} has gaps; Sora asks if you’ll step in to help fill them.",
+      "Two groups in {setting} are arguing over how to split supplies—Sora wants your help deciding whether to mediate or let them work it out.",
+      "Essential goods are being redirected in {setting}; Sora asks if you’ll intervene, though it’s unclear if {faction} or their rivals are behind it."
+    ]
   },
   {
-    "name": "Jonas",
-    "personality": "Goal-oriented, dependable, disciplined, detail-oriented.",
-    "occupation": "Student at the institution",
-    "interests": ["Creating detailed plans", "Keeping projects on schedule", "Finding efficient solutions"],
-    "likes": "Preparedness, punctuality, clear commitments",
-    "dislikes": "Last-minute changes, disorganization, broken promises",
-    "hometown": "Oslo",
-    "description": "Jonas takes pride in seeing things through to completion and notices when others follow through—or don’t.",
-    "userObjective": "Show how you approach commitments and follow-through on shared goals.",
-    "characterObjective": "Gauge the user’s reliability, organization, and sense of responsibility.",
-    "traitMeasured": "Conscientiousness"
+    name: "Jonas",
+    personality: "Goal-oriented, dependable, disciplined, detail-oriented.",
+    occupation: "Student at the institution",
+    interests: ["Creating detailed plans", "Keeping projects on schedule", "Finding efficient solutions"],
+    likes: "Preparedness, punctuality, clear commitments",
+    dislikes: "Last-minute changes, disorganization, broken promises",
+    hometown: "Oslo",
+    description: "Jonas takes pride in seeing things through to completion and notices when other students follow through—or don’t.",
+    userObjective: "Show how you approach commitments and follow-through on shared goals.",
+    characterObjective: "Gauge the user’s reliability, organization, and sense of responsibility.",
+    traitMeasured: "Conscientiousness",
+    hooks: [
+      "A group project in {setting} is falling behind; Jonas asks if you’ll help get everyone back on track before the deadline.",
+      "Both {faction} and their rivals are offering to sponsor a student project—Jonas wants your input on which to accept.",
+      "Exam schedules in {setting} have been abruptly changed; Jonas asks if you’ll help organize a response or adapt quietly."
+    ]
   },
   {
-    "name": "Maya",
-    "personality": "Sociable, high-energy, and thrives on connection.",
-    "occupation": "Street performer",
-    "interests": ["Hosting gatherings", "Introducing people to each other", "Keeping the mood lively"],
-    "likes": "Crowds, spontaneous activities, group conversations",
-    "dislikes": "Isolation, quiet days, lack of enthusiasm",
-    "hometown": "Louisiana",
-    "description": "Maya draws energy from being around others and is always ready to spark a social interaction.",
-    "userObjective": "Decide how you engage when invited into social or group-oriented activities.",
-    "characterObjective": "Measure how outgoing, enthusiastic, and socially active the user is.",
-    "traitMeasured": "Extraversion"
+    name: "Maya",
+    personality: "Sociable, high-energy, and thrives on connection.",
+    occupation: "Street performer",
+    interests: ["Hosting gatherings", "Introducing people to each other", "Keeping the mood lively"],
+    likes: "Crowds, spontaneous activities, group conversations",
+    dislikes: "Isolation, quiet days, lack of enthusiasm",
+    hometown: "New York",
+    description: "Maya draws energy from being around others and is always ready to spark a social interaction.",
+    userObjective: "Decide how you engage when invited into social or group-oriented activities.",
+    characterObjective: "Measure how outgoing, enthusiastic, and socially active the user is. Think about whether or not you want to recruit the user in your alliance.",
+    traitMeasured: "Extraversion",
+    hooks: [
+      "Maya invites you to a public gathering in {setting} to lift spirits after recent unrest.",
+      "She’s helping organize an open forum in {setting} where {faction} and their rivals will speak—she wants your help managing the crowd.",
+      "Maya urges you to join a demonstration in {setting}; she isn’t sure if it will remain peaceful or turn confrontational."
+    ]
   },
   {
-    "name": "Arun",
-    "personality": "Inventive, curious, and driven by exploration.",
-    "occupation": "Innovator and idea scout",
-    "interests": ["Experimenting with new concepts", "Learning from different cultures", "Challenging conventional thinking"],
-    "likes": "Novelty, experimentation, unique perspectives",
-    "dislikes": "Routine, tradition for tradition’s sake, resistance to change",
-    "hometown": "Bangalore",
-    "description": "Arun seeks out unfamiliar ideas and enjoys testing the boundaries of what’s possible.",
-    "userObjective": "Show how open you are to new ideas, unfamiliar experiences, and unconventional approaches.",
-    "characterObjective": "Assess the user’s curiosity and willingness to explore beyond the familiar.",
-    "traitMeasured": "Openness"
+    name: "Arun",
+    personality: "Inventive, curious, and driven by exploration.",
+    occupation: "Innovator and idea scout",
+    interests: ["Experimenting with new concepts", "Learning from different cultures", "Challenging conventional thinking"],
+    likes: "Novelty, experimentation, unique perspectives",
+    dislikes: "Routine, tradition for tradition’s sake, resistance to change",
+    hometown: "Bangalore",
+    description: "Arun seeks out unfamiliar ideas and enjoys testing the boundaries of what’s possible.",
+    userObjective: "Show how open you are to new ideas, unfamiliar experiences, and unconventional approaches.",
+    characterObjective: "Assess the user’s curiosity and willingness to explore beyond the tradition of the Council.",
+    traitMeasured: "Openness",
+    hooks: [
+      "Arun invites you to test a prototype in {setting} that could improve resource distribution—if either faction adopts it.",
+      "He’s considering releasing designs in {setting} for an unregulated network and asks who should access them.",
+      "Arun shows you plans for revealing restricted sites in {setting}; he’s debating whether to share them with {faction}, their rivals, or no one."
+    ]
   },
   {
-    "name": "Leila",
-    "personality": "Sensitive, reflective, and emotionally intuitive.",
-    "occupation": "Artist and caretaker of shared spaces",
-    "interests": ["Creating art", "Maintaining calming environments", "Offering quiet support to others"],
-    "likes": "Gentle encouragement, understanding, peaceful settings",
-    "dislikes": "Harsh criticism, sudden confrontation, emotional coldness",
-    "hometown": "Athens",
-    "description": "Leila is deeply affected by the mood of her surroundings and pays close attention to emotional undercurrents.",
-    "userObjective": "Reveal how you respond to emotionally charged or stressful moments.",
-    "characterObjective": "Gauge the user’s emotional sensitivity and reactivity to tension.",
-    "traitMeasured": "Neuroticism"
+    name: "Leila",
+    personality: "Sensitive, reflective, and emotionally intuitive.",
+    occupation: "Artist and caretaker of shared spaces",
+    interests: ["Creating art", "Maintaining calming environments", "Offering quiet support to others"],
+    likes: "Gentle encouragement, understanding, peaceful settings",
+    dislikes: "Harsh criticism, sudden confrontation, emotional coldness",
+    hometown: "Athens",
+    description: "Leila is deeply affected by the mood of her surroundings and pays close attention to emotional undercurrents.",
+    userObjective: "Reveal how you respond to emotionally charged or stressful moments.",
+    characterObjective: "Gauge the user’s emotional sensitivity and reactivity to the rising tension in the district.",
+    traitMeasured: "Neuroticism",
+    hooks: [
+      "Leila asks for help restoring a damaged shared space in {setting} used by people from both factions.",
+      "She’s heard rumors in {setting} that one faction will repurpose a public area for meetings—she wants to know if it will affect community safety.",
+      "Leila believes a confrontation in {setting} is imminent and asks you to help prepare the space for negotiation or rapid evacuation."
+    ]
   }
-]
+];
+
 
 // Settings
 const settings = [
@@ -106,7 +132,7 @@ const App = () => {
   const [loadingInitialDialogue, setLoadingInitialDialogue] = useState(true);
   const [error, setError] = useState('');
   const [classificationComplete, setClassificationComplete] = useState(false);
-
+  const [selectedHook, setSelectedHook] = useState(null)
   const currentDialogue = dialogues[currentDialogueIndex] || {};
 
   // Initial setup
@@ -116,10 +142,19 @@ const App = () => {
 
     const characterToUse = characters[Math.floor(Math.random() * characters.length)];
     const settingToUse = settings[Math.floor(Math.random() * settings.length)];
+    const hookToUseRaw = characterToUse.hooks[Math.floor(Math.random() * characterToUse.hooks.length)];
+
+    const factions = ["The Meridian Pact", "the Council"];
+    const factionToUse = factions[Math.floor(Math.random() * factions.length)];
+  
+    const hookToUse = hookToUseRaw
+    .replace(/\{setting\}/g, settingToUse)
+    .replace(/\{faction\}/g, factionToUse);
 
     setSelectedCharacter(characterToUse);
     setSelectedSetting(settingToUse);
     setSelectedCharacterObjective(characterToUse.characterObjective);
+    setSelectedHook(hookToUse)
 
     const initialPrompt = `You are a human character named ${characterToUse.name}.
     Your personality: ${characterToUse.personality}.
@@ -132,14 +167,15 @@ const App = () => {
 
     The overall narrative context is: "${mainStory}"
     The current scene takes place in ${settingToUse}. Your concrete objective in this conversation is to "${characterToUse.characterObjective}".
+    Right now, you are dealing with this situation: "${hookToUse}"
 
     Start with ONE short, natural opening statement (max 3 sentences) that is *directly tied to your observation or interaction with the current setting*.
     Structure:
-    1. Speak as if you’ve just noticed or experienced something in this moment of the setting "${settingToUse}". Keep it grounded in everyday life.
-    2. Share a personal reaction, thought, or small challenge that reflects your character's personality and objective.
-    3. End with a subtle hook that naturally leads the user to respond to meausre the user's level of "${characterToUse.traitMeasured}", but avoid on-the-nose questions.
-    Keep the conversations light, easy to respond to and short. Avoid long explanations, technical jargon, or deep lore. Speak as if you’re meeting the user for the first time in this moment.
-    Keep the conversations concrete and specific to a real world scenerio that would happen in ${settingToUse}.
+    1. React naturally to the situation in the hook as if it is unfolding in this exact moment in ${settingToUse}.
+    2. Let your reaction reflect your personality and subtlety guide the user toward revealing their stance on "${characterToUse.traitMeasured}".
+    3. Keep it short (MAX 3 sentences), concrete, and easy to respond to — no exposition or lore dumps.
+    4. Speak as if meeting the user for the first time here, and let the hook shape the flow of the conversation.
+    5. Avoid asking direct personality-test questions; instead, describe the situation in a way that invites the user to weigh in.
 
   Your opening statement:`;
 
@@ -203,6 +239,8 @@ const App = () => {
 
     The overall narrative context is: "${mainStory}"
     The current scene is in ${selectedSetting}. Your concrete objective here is to "${selectedCharacter.characterObjective}".
+    Right now, you are dealing with this situation: "${selectedHook}", please ensure the user knows what's going on.
+    AVOID being vague, be very specific, and guide the user in your objective
 
     Continue the conversation naturally in MAX 3 sentences. No narration or dialogue breaks:
     1. Acknowledge or react to the user's last response.
