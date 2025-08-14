@@ -1,12 +1,36 @@
-# React + Vite
+# Trait Engine
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive narrative engine powered by Google's Gemini API.  
+Users engage in branching narrative scenarios, each designed to measure specific personality traits.  
+At the end, the system classifies the user’s personality profile in a structured, consistent format.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Scenario-Based Assessment**  
+  Users interact with fictional characters in varied settings. Each scenario probes a subfacet of one of the Big Five traits.
+  
+- **Dynamic Story Generation**  
+  Character statements and follow-up prompts are generated dynamically via the Gemini API.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **Real-Time Feedback**  
+  Immediate personality classification at the end of all scenarios, displayed in a clear and engaging UI.
+
+---
+
+## Tech Stack
+
+- **Frontend:** React, Vite, TailwindCSS
+- **AI Model:** Google Gemini API
+- **Environment:** Node.js 
+- **Styling:** TailwindCSS with custom utility classes
+
+---
+
+## Setup
+
+### 1. Clone the Repository
+```bash
+git clone https://github.com/yourusername/personality-engine.git
+cd personality-engine
